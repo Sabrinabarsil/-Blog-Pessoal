@@ -1,6 +1,7 @@
 package com.generation.blogpessoal.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;//Trabalhando com JPA vamos usar JAVAX
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Postagem {
 	private String texto;
 	
 	@UpdateTimestamp
-	private LocalDate data;
+	private LocalDateTime data;
 	
 	public Long getId() {
 		return id;
@@ -50,10 +51,10 @@ public class Postagem {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-	public LocalDate getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
-	public void setData(LocalDate data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 	
