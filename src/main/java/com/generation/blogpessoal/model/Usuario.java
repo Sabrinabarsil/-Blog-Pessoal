@@ -1,19 +1,19 @@
 package com.generation.blogpessoal.model;
 
-import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity /*
 		 * Informa q/ classe = entidade.JPA faz a ligação entre a entidade e uma tabela
@@ -50,10 +50,17 @@ public class Usuario {
 
 	private String foto;
 
-	@Column(name = "data_nascimento") // indica o nome que o atributo terá no Banco de dados
-	@JsonFormat(pattern = "yyyy-MM-dd") // formata a data para o mesmo padrão do MySQL
-	@NotNull(message = "O Atributo Data de Nascimento é Obrigatório")
-	private LocalDate dataNascimento;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Postagem> postagem;
+
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
+	}
 
 	public Long getId() {
 		return id;
@@ -93,14 +100,6 @@ public class Usuario {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
-
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
 	}
 
 }

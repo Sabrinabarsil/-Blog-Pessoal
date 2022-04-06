@@ -1,7 +1,6 @@
 package com.generation.blogpessoal.model;
 
-import java.time.LocalDate;
-
+  
 /*classe auxiliar para ajudar no processo de login
  para comparar o usuario que esta sendo digitado com a senha que esta no banco de dados
  não gera tabela */
@@ -13,7 +12,6 @@ public class UsuarioLogin {
 	private String usuario;
 	private String senha;
 	private String foto;
-	private LocalDate dataNascimento;
 	private String Token;
 	
 	public Long getId() {
@@ -46,12 +44,7 @@ public class UsuarioLogin {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
+
 	public String getToken() {
 		return Token;
 	}
