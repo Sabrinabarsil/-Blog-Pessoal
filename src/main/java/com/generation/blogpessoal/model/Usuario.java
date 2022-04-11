@@ -11,36 +11,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity /*
-		 * Informa q/ classe = entidade.JPA faz a ligação entre a entidade e uma tabela
-		 * no banco de dados. em POOuma entidade representa uma tabela do banco de
-		 * dados, e cada instância dessa entidade representa uma linha dessa tabela.
-		 */
+import io.swagger.v3.oas.annotations.media.Schema;
+@Entity		 
 @Table(name = "tb_usuarios") // nome da tabela
-
 public class Usuario {
 
-	@Id // informa ao JPA qual campo/atributo de uma entidade estará relacionado à chave
-		// primária da respectiva tabela no banco de dados. OBRIGATÓRIOA
-	@GeneratedValue(strategy = GenerationType.IDENTITY) /*
-														 * @GeneratedValue: é utilizada para informar que a geração do
-														 * valor do identificador único da entidade será gerenciada pelo
-														 * provedor de persistência. (strategy =
-														 * GenerationType.IDENTITY): Informa ao provedor de persistência
-														 * que os valores a serem atribuídos ao identificador único
-														 * serão gerados pela coluna de auto incremento do banco de
-														 * dados.
-														 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
 
 	@NotBlank(message = "o Atributo NOME é Obrigatório!")
 	private String nome;
-
-	@NotBlank(message = "O atributo USUARIO é obrigatório!!!")
+	
+	
+	@Schema (example= "email@email.com.br")
+	@NotNull(message = "O atributo USUARIO é obrigatório!!!")
 	@Email(message = "O atributo USUARIO deve conter um email Valido!!!")
 	private String usuario;
 
